@@ -6,6 +6,10 @@
 
 /* A simple (reverse) trie interface */
 
+#define MAX_KEY 64
+// Uncomment this line for debug printing
+#define DEBUG 1
+
 /* Optional init routine.  May not be required. */
 void init (int numthreads);
 
@@ -28,6 +32,10 @@ int delete  (const char *string, size_t strlen);
  */
 void check_max_nodes  ();
 
+/* Optional shut-down routine to wake up and terminate
+   the delete thread.  May not be required. */
+void shutdown_delete_thread ();
+
 
 /* Print the structure of the tree.  Mostly useful for debugging. */
 void print (); 
@@ -36,6 +44,10 @@ void print ();
  * a name is available.
  */
 extern int allow_squatting;
+
+/* functions for testing in main */
+int num_nodes();
+void delete_all_nodes();
 
 
 #endif /* __TRIE_H__ */ 
