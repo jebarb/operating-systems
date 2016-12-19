@@ -710,15 +710,15 @@ void delete_all_nodes() {
 int _print(struct trie_node *node, int depth, char lines[100], int count) {
     printf("%s", lines);
     if (!node->next)
-        printf("└");
+        printf("└─");
     else
-        printf("├");
+        printf("├─");
     printf ("%.*s, IP %d, This %p, Next %p, Children %p\n",
             node->strlen, node->key, node->ip4_address, node, node->next, node->children);
     if (node->children) {
         pthread_mutex_lock(&(node->children->mutex));
         if (node->next)
-            strcat(lines, "| ");
+            strcat(lines, "│ ");
         else strcat(lines, "  ");
         count = _print(node->children, depth+1, lines, count+1);
         lines[2*depth] = '\0';
